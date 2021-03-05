@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="team_0302"/>
+<aop-project name="team_0303"/>
+<aop-project name="team_0304"/>
+<aop-project name="team_0305"/>
+<aop-project name="springStudy"/>
+<aop-project name="kiosk_0302"/>
+<aop-project name="javaBaseSpring_0302"/>
+<aop-project name="jdbcStudy_0303"/>
+<aop-project name="controllerStudy_0303"/>
+</aop-reference-model>

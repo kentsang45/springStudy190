@@ -1,0 +1,15 @@
+package org.kent.main;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class Main {
+	// bad code : throws Exception
+	public static void main(String[] args) throws Exception {
+		ApplicationContext ctx = null;
+		ctx = new ClassPathXmlApplicationContext("");
+		
+		System.out.println(ctx);
+	}
+	
+}

@@ -1,0 +1,5 @@
+package org.kent.service;
+
+public class MenuServiceImpl implements MenuService {
+
+}

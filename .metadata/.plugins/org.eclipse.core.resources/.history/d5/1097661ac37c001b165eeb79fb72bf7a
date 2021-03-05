@@ -1,0 +1,10 @@
+package org.gyus.test;
+
+public class JDBCTests {
+	
+	
+	public void testConnection() {
+		
+	}
+
+}

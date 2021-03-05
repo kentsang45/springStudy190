@@ -1,0 +1,10 @@
+package org.kent.ui;
+
+import org.kent.service.MenuService;
+
+public class MenuUI {
+	
+	private MenuService service;
+	
+	
+}

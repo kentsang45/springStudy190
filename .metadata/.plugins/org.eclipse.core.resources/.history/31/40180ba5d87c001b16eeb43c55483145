@@ -1,0 +1,10 @@
+package org.gyus.mapper;
+
+public interface TodoMapper {
+
+	
+	//메소드만 있고, 몸체는 없다. 인터페이스
+	String getTitle();
+	
+	String todoMapper();
+}

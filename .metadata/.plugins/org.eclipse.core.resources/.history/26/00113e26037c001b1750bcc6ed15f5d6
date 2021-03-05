@@ -1,0 +1,6 @@
+package org.vertigo.mapper;
+
+
+public interface Mapper {
+
+}

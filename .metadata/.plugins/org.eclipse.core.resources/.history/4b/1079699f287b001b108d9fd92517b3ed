@@ -1,0 +1,45 @@
+package org.kent.dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class TimeDAO {
+
+	private static final String driverName = "oracle.jdbc.driver.OracleDriver";
+	private static final String jdbcURL = "jdbc:oracle:thin:@112.169.196.210:1526:XE";
+	private static final String userName = "gyus";
+	private static final String userPW = "gyus";
+	
+	public String select() throws Exception{
+		String sql = "select sysdate from dual";
+		
+		Class.forName(driverName);
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String result="";
+		try {
+			
+			con = DriverManager.getConnection(jdbcURL, userName, userPW);
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			result = rs.getString(0);
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			return result;
+			
+		}
+		
+		return result;
+		
+	}
+	
+	
+}

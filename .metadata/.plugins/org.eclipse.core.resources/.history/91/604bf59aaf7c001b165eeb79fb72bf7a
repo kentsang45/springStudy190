@@ -1,0 +1,9 @@
+package org.kent.entity;
+
+public class Todo {
+	
+	private Integer tno;
+	private String title;
+	private boolean complete;
+	private Date regdate;
+}

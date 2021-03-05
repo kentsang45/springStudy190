@@ -1,0 +1,5 @@
+package org.kent.domain;
+
+public class Menu {
+
+}

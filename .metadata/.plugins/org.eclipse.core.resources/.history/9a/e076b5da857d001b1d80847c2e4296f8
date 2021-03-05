@@ -1,0 +1,5 @@
+package org.gyus.dao;
+
+public class JdbcTests {
+
+}

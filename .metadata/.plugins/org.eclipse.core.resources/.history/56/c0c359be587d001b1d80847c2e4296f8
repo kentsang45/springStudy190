@@ -1,0 +1,53 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Todo List</title>
+</head>
+<body>
+
+<form action="/todo/add" method='post' target='kent'>
+	
+	<div>
+		<input type='text' name='title'>
+	</div>
+
+	<div>
+		<button class="button">SAVE</button>	
+	</div>
+	
+</form>
+
+<iframe name='kent'></iframe>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous">
+</script>
+
+<script>
+
+	function showResult(){
+		alert("SHOW RESULT");
+	}
+
+	$(document).ready(function(){
+		
+		$(".button").on("click", function(e){
+			// 이벤트의 기본동작을 막아라
+			e.preventDefault();
+			// form 섭밋
+			$(".form").submit();
+		})
+	})
+
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+package org.kent.controller;
+
+import org.junit.Test;
+
+public class TodoControllerTests extends AbstractControllerTests{
+	@Test
+	public void testTodo() {
+		
+	}
+}

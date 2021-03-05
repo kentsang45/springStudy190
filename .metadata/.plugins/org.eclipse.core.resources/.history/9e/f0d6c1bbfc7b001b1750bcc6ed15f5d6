@@ -1,0 +1,10 @@
+package org.vertigo.domain;
+
+public class TestDTO {
+	
+	int tno;
+	String title;
+	String regdate;
+	
+
+}

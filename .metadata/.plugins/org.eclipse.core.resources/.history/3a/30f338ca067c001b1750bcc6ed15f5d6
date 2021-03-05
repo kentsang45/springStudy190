@@ -1,0 +1,11 @@
+package org.vertigo.dao;
+
+import org.vertigo.mapper.SampleMapper;
+
+public class SampleDAOTests {
+
+	@Autowired
+	SampleMapper sm;
+	
+	
+}

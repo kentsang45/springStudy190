@@ -1,0 +1,9 @@
+package org.gyus.dto;
+
+public class TodoDTO {
+	
+	int tno;
+	String title;
+	String regdate;
+
+}

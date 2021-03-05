@@ -1,0 +1,5 @@
+package org.kent.entity;
+
+public class Todo {
+
+}

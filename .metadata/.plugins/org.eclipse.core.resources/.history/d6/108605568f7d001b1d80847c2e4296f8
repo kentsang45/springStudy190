@@ -1,0 +1,5 @@
+package org.gyus.dto;
+
+public class TodoDTO {
+
+}

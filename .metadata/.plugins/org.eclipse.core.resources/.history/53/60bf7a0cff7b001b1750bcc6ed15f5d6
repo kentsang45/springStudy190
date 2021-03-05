@@ -1,0 +1,15 @@
+package org.vertigo.dao;
+
+import org.vertigo.domain.TestDTO;
+
+public class DAO {
+	
+
+	public TestDTO selectOne(int idx) {
+		
+	
+	}
+	
+	
+
+}

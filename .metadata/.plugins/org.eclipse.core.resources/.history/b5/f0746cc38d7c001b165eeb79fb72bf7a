@@ -1,0 +1,14 @@
+package org.kent.controller;
+
+import org.springframework.stereotype.Controller;
+
+import jdk.internal.org.jline.utils.Log;
+
+// bean 등록 된다
+@Controller
+public class SampleController {
+	
+	public void doA() {
+		Log.info("doA");
+	}
+}

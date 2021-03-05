@@ -1,0 +1,8 @@
+package org.kent.mapper;
+
+public interface TimeMapper {
+	
+	// interface는 기본이 public
+	String getTime();
+	
+}

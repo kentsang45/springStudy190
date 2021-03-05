@@ -1,0 +1,8 @@
+package org.gyus.mapper;
+
+public interface TimeMapper {
+	
+	
+	
+
+}

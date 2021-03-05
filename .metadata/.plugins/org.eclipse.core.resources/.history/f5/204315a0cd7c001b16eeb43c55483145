@@ -1,0 +1,7 @@
+package org.gyus.mapper;
+
+public interface TodoMapper {
+
+	
+	
+}

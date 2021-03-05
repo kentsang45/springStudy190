@@ -1,0 +1,25 @@
+package org.gyus.test;
+
+import javax.sql.DataSource;
+
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import jdk.internal.org.jline.utils.Log;
+
+public class DataSourceTests {
+	
+	
+	@Autowired
+	DataSource ds;
+	
+	@Test
+	public void testConnection() {
+		try(Connection con = ds.getConnection();){
+			Log.info(con);
+		}
+	}
+	
+	
+
+}

@@ -1,0 +1,6 @@
+package org.kent.domain;
+
+public class Menu {
+	private String name;
+	private int price;
+}

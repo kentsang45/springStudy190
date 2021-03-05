@@ -1,0 +1,9 @@
+package org.gyus.domain;
+
+import org.junit.runner.RunWith;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@C
+public class AcademyTests {
+
+}

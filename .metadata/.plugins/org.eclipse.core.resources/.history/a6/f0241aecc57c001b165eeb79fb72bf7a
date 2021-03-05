@@ -1,0 +1,15 @@
+package org.gyus.test;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class DataSousrce {
+	
+	
+	@Autowired
+	DataSource ds;
+	
+	
+
+}

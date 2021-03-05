@@ -1,0 +1,19 @@
+package org.kent.mapper;
+
+import org.junit.Test;
+import org.kent.controller.AbstractControllerTests;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import lombok.extern.log4j.Log4j;
+
+@Log4j
+public class TodoMapperTests{
+	
+	// 이걸 generic으로 빼내보기!
+	@Autowired
+	TodoMapper mapper;
+	
+	@Test
+	public void 
+	
+}

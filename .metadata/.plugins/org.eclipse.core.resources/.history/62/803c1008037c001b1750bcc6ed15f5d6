@@ -1,0 +1,12 @@
+package org.vertigo.dao;
+
+import org.vertigo.domain.DTO;
+
+public class DAO {
+	
+
+
+	
+	
+
+}

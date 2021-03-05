@@ -1,0 +1,12 @@
+package org.kent.mapper;
+
+import org.apache.ibatis.annotations.Select;
+
+public interface TimeMapper {
+	
+	// interface는 기본이 public
+	// ()안에 쿼리문을 넣으면 된다.
+	@Select("select now()")
+	String getTime();
+	
+}

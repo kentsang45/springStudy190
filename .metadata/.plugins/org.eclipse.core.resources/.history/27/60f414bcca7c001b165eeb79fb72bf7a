@@ -1,0 +1,15 @@
+package org.gyus.test;
+
+import org.junit.Test;
+
+import lombok.extern.log4j.Log4j;
+
+@Log4j
+public class TimeMapperTests {
+
+	
+		@Test
+		private getTime() {
+			
+		}
+}

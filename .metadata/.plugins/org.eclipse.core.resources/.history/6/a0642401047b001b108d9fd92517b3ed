@@ -1,0 +1,24 @@
+package org.kent.ui;
+
+import org.kent.service.MenuService;
+
+public class MenuUI {
+	
+	private MenuService service;
+	
+	// toString
+	
+	
+	// getter, setter
+	public MenuService getService() {
+		return service;
+	}
+
+	public void setService(MenuService service) {
+		this.service = service;
+	}
+	
+	
+	
+	
+}

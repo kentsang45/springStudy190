@@ -1,0 +1,11 @@
+package org.kent.entity;
+
+import java.util.Date;
+
+public class Todo {
+	
+	private Integer tno;
+	private String title;
+	private boolean complete;
+	private Date regdate;
+}

@@ -1,0 +1,9 @@
+package org.kent.mapper;
+
+import org.kent.entity.Todo;
+
+public interface TodoMapper {
+
+	public void insert(Todo todo);
+	
+}

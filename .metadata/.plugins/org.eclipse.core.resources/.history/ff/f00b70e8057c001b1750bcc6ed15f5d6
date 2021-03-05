@@ -1,0 +1,8 @@
+package org.vertigo.mapper;
+
+import org.vertigo.domain.SampleDTO;
+
+public interface SampleMapper {
+
+	SampleDTO getOne(int index);
+}

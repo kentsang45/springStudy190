@@ -1,0 +1,6 @@
+package org.kent.service;
+
+@Component
+public class Chef {
+
+}

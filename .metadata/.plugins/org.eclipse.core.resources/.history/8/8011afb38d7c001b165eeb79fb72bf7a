@@ -1,0 +1,9 @@
+package org.kent.controller;
+
+import org.springframework.stereotype.Controller;
+
+// bean 등록 된다
+@Controller
+public class SampleController {
+	
+}

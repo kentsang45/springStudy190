@@ -1,0 +1,16 @@
+package org.kent.domain;
+
+public class Menu {
+	
+	private String name;
+	private int price;
+	
+	// 생성자
+	public Menu(String name, int price) {
+		super();
+		this.name = name;
+		this.price = price;
+	}
+	
+	
+}

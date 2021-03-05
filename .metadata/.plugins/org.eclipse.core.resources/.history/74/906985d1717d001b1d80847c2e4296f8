@@ -1,0 +1,110 @@
+package org.kent.controller;
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+import org.kent.dto.TodoDTO;
+import org.kent.entity.Todo;
+import org.kent.mapper.TodoMapper;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j;
+
+@Controller
+@RequestMapping("/todo") // todo로 들어오는 모든 친구들
+@Log4j
+@RequiredArgsConstructor
+public class TodoController {
+	// 입력과 처리가 분리 = GET, POST
+	
+	private final TodoMapper mapper;
+	
+	// spring 4버전
+	@GetMapping("/add")
+	public void add() {
+		log.info("get add..................");
+		
+	}
+	
+	// redirection 하는 방법 = String을 반환
+	@PostMapping(value="/add")
+	public String addPost(TodoDTO dto) {
+		log.info("post add.....................");
+		log.info(dto);
+		
+		Todo todo = Todo.builder().title(dto.getTitle()).complete(dto.getComplete()).build(); 
+		
+		// mapper.insert(todo);
+
+		return "/todo/addResult";
+		//return "success";
+	}
+	
+	@GetMapping("/addOne")
+	public void addOne() {
+		log.info("get add1..................");
+		
+	}
+	
+	// redirection 하는 방법 = String을 반환
+	@PostMapping("/addOne")
+	public String addOnePost(TodoDTO dto) {
+		log.info("post add1.....................");
+		log.info(dto);
+		
+		Todo todo = Todo.builder().title(dto.getTitle()).complete(dto.getComplete()).build(); 
+		
+		
+		
+		// mapper.insert(todo);
+
+		return "redirect:/todo/list?msg=success";
+	}
+	
+	@GetMapping("/addTwo")
+	public void addTwo() {
+		log.info("get add2..................");	
+	}
+	
+	// redirection 하는 방법 = String을 반환
+	@PostMapping("/addTwo")
+	public String addTwoPost(TodoDTO dto, RedirectAttributes rttr) {
+		log.info("post add2.....................");
+		log.info(dto);
+		
+		Todo todo = Todo.builder().title(dto.getTitle()).complete(dto.getComplete()).build(); 
+		
+		rttr.addFlashAttribute("msg", "success");
+
+		return "redirect:/todo/list";
+	}
+	
+	@GetMapping("/list")
+	public void list(Model model) 	{
+		log.info("get list.....................");
+		
+		// model에 넣으면 view까지 간다.
+		// rangeClosed는 1~10까지 range는 1~9까지 
+		// mapToObj는? DTO를 map으로 묶어준다.
+		// collect는?
+		// Collectors는? map을 List로...
+		List<TodoDTO> list = IntStream.rangeClosed(1,10).mapToObj(i->{
+			TodoDTO dto = new TodoDTO();
+			dto.setTno(i);
+			dto.setTitle("SAMPLE_TITLE" + i);
+			return dto;
+		}).collect(Collectors.toList());
+		
+		// 오브젝트만 넣으면 타입의 앞글자를 소문자로 바꾼다.
+		model.addAttribute("list", list);
+	}
+	
+}
