@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class HomeController {
 
-	private final Restaurant res;
+	private Restaurant res;
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	// 생성자로 주입

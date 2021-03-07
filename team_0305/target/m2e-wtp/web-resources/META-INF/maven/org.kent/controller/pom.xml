@@ -117,7 +117,7 @@
 			<version>1.2</version>
 		</dependency>
 		
-		<!-- ADDED MAVEN -->
+
 		<!-- JUnit Test -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -126,6 +126,9 @@
 			<scope>test</scope>
 		</dependency>
 		
+		<!-- CUSTUM ADDED MAVEN -->
+		<!-- CUSTUM ADDED MAVEN -->
+		<!-- CUSTUM ADDED MAVEN -->
 		<!-- LOMBOK -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
