@@ -1,5 +1,6 @@
 package org.kent.controller;
 
+import org.kent.entity.Todo;
 import org.kent.mapper.TimeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,5 @@ public class SampleController {
 	public void getTime(Model model) {
 		log.info("======== GET TIME : "+timeMapper+" ========");
 		model.addAttribute("time", timeMapper.getTime());
-		
 	}
 }

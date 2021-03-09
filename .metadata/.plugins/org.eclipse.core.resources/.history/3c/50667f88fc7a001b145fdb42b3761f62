@@ -1,9 +1,0 @@
-package org.kent.main;
-
-public class Main {
-	// bad code : throws Exception
-	public static void main(String[] args) throws Exception {
-		
-	}
-	
-}

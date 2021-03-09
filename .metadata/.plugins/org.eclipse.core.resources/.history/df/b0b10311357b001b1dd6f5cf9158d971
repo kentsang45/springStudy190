@@ -1,7 +1,0 @@
-package org.gyus.domain;
-
-public class Academy {
-	
-	private Teacher teacher;
-
-}

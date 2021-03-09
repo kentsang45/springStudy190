@@ -28,7 +28,7 @@ public class AbstractControllerTests {
 	
 	@Autowired
 	WebApplicationContext context;
-
+	
 	MockMvc mvc;
 	
 	@Before

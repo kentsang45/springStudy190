@@ -1,6 +1,0 @@
-package org.kent.config;
-
-@Config
-public class RootConfig {
-
-}

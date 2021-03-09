@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.vertigo.board.mapper.BoardMapper">
+
+    <select id="getTotalCount" resultType="int">
+        <![CDATA[
+            select count(bno) from tbl_board
+        ]]>
+    </select>
+
+    <insert id="insertOne" parameterType="org.vertigo.board.domain.BoardVO">
+        <![CDATA[
+            insert into tbl_board (title, content, writer)
+            values (#{title}, #{content}, #{writer})
+        ]]>
+    </insert>
+</mapper>
+
