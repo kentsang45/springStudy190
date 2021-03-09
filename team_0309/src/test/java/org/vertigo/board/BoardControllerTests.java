@@ -1,5 +1,7 @@
 package org.vertigo.board;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -18,11 +20,31 @@ public class BoardControllerTests extends AbstractControllerTests {
 	public void testController() {
 		 try {
 	            log.info(mvc);
+	            
+	            
+	            log.info("Board Controller getList................................started");
 	            mvc.perform(
 	                    MockMvcRequestBuilders.get("/board/list")
-	            );
-	            log.info("testTodo................................done");
-	        }catch(Exception e){
+	                    .param("page", "0")
+	                    .param("perSheet", "20")
+	            ).andDo(print());
+	            log.info("Board Controller getList................................done");
+	            
+	            
+	            log.info("Board Controller getRegister................................started");
+	            mvc.perform(
+	                    MockMvcRequestBuilders.get("/board/register")
+	            ).andDo(print());
+	            log.info("Board Controller getRegister................................done");
+	            
+	            
+	            log.info("Board Controller getRead................................started");
+	            mvc.perform(
+	                    MockMvcRequestBuilders.get("/board/read")
+	                    .param("bno", "10")
+	            ).andDo(print());
+	            log.info("Board Controller getRead................................done");
+	        } catch(Exception e){
 	            log.info(e.getMessage());
 	        }
 	}

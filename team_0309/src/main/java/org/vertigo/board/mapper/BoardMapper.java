@@ -15,4 +15,7 @@ public interface BoardMapper {
 	
 	void insertOne(BoardVO board);
 	
+	@Select("select * from tbl_board where bno = #{bno}")
+	BoardVO selectOne(int bno);
+	
 }

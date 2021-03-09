@@ -26,6 +26,8 @@ public interface BoardService {
 	        return boardDTO;
 	    }
 	    
+	    BoardDTO selectOne(int bno);
+	    
 	    // mapper를 활용한다.
 	    List<BoardDTO> getPageList(PageDTO pageDTO);
 	    

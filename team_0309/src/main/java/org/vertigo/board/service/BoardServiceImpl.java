@@ -59,4 +59,10 @@ public class BoardServiceImpl implements BoardService{
 		boardMapper.insertOne(toDomain(boardDTO));
 	}
 
+	@Override
+	public BoardDTO selectOne(int bno) {
+		// TODO Auto-generated method stub
+		return toDTO(boardMapper.selectOne(bno));
+	}
+
 }
