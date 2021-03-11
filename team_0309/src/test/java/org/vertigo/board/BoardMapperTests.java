@@ -29,17 +29,43 @@ public class BoardMapperTests {
 	
 	@Test
 	public void testTotalCount() {
-		int totalCount = boardMapper.getTotalCount();
+		PageDTO dto = PageDTO.builder().page(0).perSheet(20).type("tcw").keyword("10").build();
+		int totalCount = boardMapper.getTotalCount(dto.getArr(), dto.getKeyword());
 		log.info("totalCount : " + totalCount);
 	}
 	
+//	@Test
+//	public void testGetList() {
+//		List<BoardVO> list = boardMapper.getList(0, 20);
+//		list.forEach(
+//				l->{ log.info(l.getBno()); }
+//				);
+//	}
+	
+//    @Test
+//    public void testEx11(){
+//
+//        PageDTO dto = new PageDTO();
+//        boardMapper.ex11(dto).forEach(
+//                b->{
+//                    log.info("ex11");
+//                    log.info(b);
+//                    log.info("ex11");
+//                }
+//        );
+//        log.info("TEST DONE");
+//    }
+	
 	@Test
-	public void testGetList() {
-		List<BoardVO> list = boardMapper.getList(0, 20);
+	public void testGetListSearch() {
+		PageDTO dto = PageDTO.builder().page(0).perSheet(20).type("tcw").keyword("10").build();
+		
+		List<BoardVO> list = boardMapper.getList(dto.getPage(), dto.getPerSheet(), dto.getArr(), dto.getKeyword());
 		list.forEach(
-				l->{ log.info(l.getBno()); }
+				l->{ log.info(l); }
 				);
 	}
+	
 	
 	
 	// ====== SERVICE TEST =======//
@@ -58,7 +84,8 @@ public class BoardMapperTests {
 	
 	@Test
 	public void testServiceTotalCount() {
-		int totalCount = boardService.getTotalCount();
+		PageDTO dto = PageDTO.builder().page(0).perSheet(20).type("tcw").keyword("10").build();
+		int totalCount = boardService.getTotalCount(dto);
 		log.info("totalCount : " + totalCount);
 	}
 	

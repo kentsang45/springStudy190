@@ -32,11 +32,11 @@ public class BoardController {
 	
 	// PageDTO는 browser에서 넘어온 정보이다.
 	// Model은 view로 넘겨줄 정보이다.
-	@GetMapping("/list")
+	@GetMapping({"/list", "/modify"})
 	public String getList(PageDTO pageDTO, Model model) {
 		log.info("=========== BOARD CONTROLLER GETLIST ==========");
 		
-		PageMaker pageMaker = new PageMaker(pageDTO, boardService.getTotalCount());
+		PageMaker pageMaker = new PageMaker(pageDTO, boardService.getTotalCount(pageDTO));
 		
 		model.addAttribute("list", boardService.getPageList(pageDTO));
 		model.addAttribute("pageMaker", pageMaker);
@@ -69,10 +69,22 @@ public class BoardController {
 	    }
 	
 	 @GetMapping("/read")
-		public void getRead(int bno, Model model) {
+		public void getRead(PageDTO pageDTO, int bno, Model model) {
 			log.info("=========== BOARD CONTROLLER GET READ ==========");
-			BoardDTO dto = boardService.selectOne(bno);
-			model.addAttribute("board", dto);
+			log.info("bno : " + bno);
+			log.info("pageDTO : " + pageDTO);
+			BoardDTO boardDTO = boardService.selectOne(bno);
+			model.addAttribute("board", boardDTO);
+			model.addAttribute("pageDTO", pageDTO);
 		}
 	 
+	 @PostMapping("/delete")
+	 @ResponseBody
+	 public ResponseEntity deletePost(Integer bno) {
+		 log.info("=================== BOARD CONTROLLER POST REGISTER ===================");
+		 log.info(bno);
+
+
+		 return new ResponseEntity<String>("success", HttpStatus.OK);
+	 }
 }

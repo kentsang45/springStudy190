@@ -26,12 +26,12 @@ public interface BoardService {
 	        return boardDTO;
 	    }
 	    
-	    BoardDTO selectOne(int bno);
+	    BoardDTO selectOne(Integer bno);
 	    
 	    // mapper를 활용한다.
 	    List<BoardDTO> getPageList(PageDTO pageDTO);
 	    
-	    int getTotalCount();
+	    int getTotalCount(PageDTO dto);
 
 	    void register(BoardDTO boardDTO);
 }

@@ -21,11 +21,9 @@ public class BoardServiceImpl implements BoardService{
 	
 	@Override
 	public List<BoardDTO> getPageList(PageDTO pageDTO) {
-		int skip = pageDTO.getSkip();
-		int perSheet = pageDTO.getPerSheet();
 		
 		// mapper에서 정보를 줘서 DB로 가서 쿼리를 해서 BoardVO로 가져왔다.
-		List<BoardVO> voList = boardMapper.getList(skip, perSheet);
+		List<BoardVO> voList = boardMapper.getList(pageDTO.getSkip(), pageDTO.getPerSheet(), pageDTO.getArr(), pageDTO.getKeyword());
 
 		List<BoardDTO> resultList = new ArrayList<BoardDTO>();
 		
@@ -45,13 +43,12 @@ public class BoardServiceImpl implements BoardService{
 			resultList.add(toDTO(tempVO));
 		}	
 		
-		// TODO Auto-generated method stub
 		return resultList;
 	}
 
 	@Override
-	public int getTotalCount() {
-		return boardMapper.getTotalCount();
+	public int getTotalCount(PageDTO dto) {
+		return boardMapper.getTotalCount(dto.getArr(), dto.getKeyword());
 	}
 
 	@Override
@@ -60,8 +57,7 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public BoardDTO selectOne(int bno) {
-		// TODO Auto-generated method stub
+	public BoardDTO selectOne(Integer bno) {
 		return toDTO(boardMapper.selectOne(bno));
 	}
 

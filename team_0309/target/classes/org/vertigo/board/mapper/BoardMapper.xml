@@ -4,11 +4,25 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.vertigo.board.mapper.BoardMapper">
+<sql id="search">
+	<where>
+    	<if test="arr != null">
+    		<foreach collection="arr" item="item" separator=" OR " open="(" close=")">
+    		<if test="item == 't'.toString()">
+    			title like concat('%', #{keyword}, '%')
+    		</if><if test="item == 'c'.toString()">
+    			content like concat('%', #{keyword}, '%')
+ 			</if><if test="item == 'w'.toString()">
+    			writer like concat('%', #{keyword}, '%')
+    		</if>	
+    		</foreach>
+    	</if>
+    </where>
+</sql>
 
     <select id="getTotalCount" resultType="int">
-        <![CDATA[
-            select count(bno) from tbl_board
-        ]]>
+        select count(bno) from tbl_board
+    	<include refid="search"></include>
     </select>
 
     <insert id="insertOne" parameterType="org.vertigo.board.domain.BoardVO">
@@ -17,5 +31,38 @@
             values (#{title}, #{content}, #{writer})
         ]]>
     </insert>
+    
+    
+    <select id="getList" resultType="org.vertigo.board.domain.BoardVO">
+    	select * from tbl_board
+    	<include refid="search"></include>
+    	order by bno desc
+    	limit #{skip}, #{count}
+    </select>
+   
+   
+   
+   
+    
+    
+    <select id="ex11" resultType ="org.vertigo.board.domain.BoardVO">
+        select * from tbl_board
+        <where>
+        <if test = "map != null">
+            <foreach collection="map" item="item" index="key" separator=" OR " open="(" close=")">
+                <if test="key == 't'.toString()">
+                    title like ${item}
+                </if>
+                <if test="key == 'c'.toString()">
+                    content like ${item}
+                </if>
+                <if test="key == 'w'.toString()">
+                    writer like ${item}
+                </if>
+            </foreach>
+        </if>
+        </where>
+        order by bno desc limit 0,10
+    </select>
 </mapper>
 

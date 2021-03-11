@@ -3,7 +3,8 @@
 
 <h1> Read </h1>
 
-<button class="listButton">Go Back To List</button>
+<button class="listButton">목록으로</button>
+<button class="modButton">글 수정하기</button>
 
 <table class="table">
   <thead class="thead-dark">
@@ -30,19 +31,34 @@
   </tbody>
 </table>
 
-
+<form class='actionForm' action="/board/modify" method="get">
+	<input type="hidden" name="page" value="${pageDTO.page}">
+    <input type="hidden" name="perSheet" value="${pageDTO.perSheet}">
+    <input type="hidden" name="type" value="${pageDTO.type}">
+    <input type="hidden" name="keyword" value="${pageDTO.keyword}">
+    <input type="hidden" name="bno" value="${board.bno}">
+   
+</form>
 
 <script>
+	var actionForm = document.querySelector(".actionForm");
 
-    
-
-    
+ 	// 이부분을 함수로 만들어서 util로 빼기...
     document.querySelector(".listButton").addEventListener("click",
     		e=>{
     			console.log("List BUTTON ON");
     			e.preventDefault();
-    			self.location = "/board/list";  		    		    
+    			actionForm.setAttribute("action", "/board/list");
+    			actionForm.submit();		    		    
     		})
+    		
+     document.querySelector(".modButton").addEventListener("click",
+    		e=>{
+    			console.log("mod BUTTON ON");
+    			e.preventDefault();
+    
+    			actionForm.submit();	 		    		    
+    		})		
     
 </script>
 

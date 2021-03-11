@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kent.board.mapper.BoardMapper">
+
+<sql id="search">
+	<where>
+		<if test="arr != null">
+			<foreach collection="arr" item="item" separator=" OR " open="(" close=")">
+				<if test="item == 't'.toString()">
+				title like concat('%', #{keyword}, '%')				
+				</if><if test="item == 'c'.toString()">
+				content like concat('%', #{keyword}, '%')				
+				</if><if test="item == 'w'.toString()">
+				writer like concat('%', #{keyword}, '%')				
+				</if>
+			</foreach>
+		</if>
+	</where>
+</sql>
+
+	
+	<!-- 페이징 조회하기 -->
+	<select id="getPageList" resultType="Board" parameterType="Page">
+		select * from tbl_board
+		<include refid="search"></include>
+		order by bno desc limit #{skip}, #{perSheet}
+	</select>
+
+
+
+
+	<select id="getTotalCount" resultType="int" parameterType="Page">
+		select count(*) from tbl_board
+		<include refid="search"></include>
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- bno로 조회하기 --> 
+	<select id="getOne" resultType="Board">
+		select * from tbl_board where bno = #{bno}
+	</select>
+	
+	<!-- 게시글 등록하기--> 
+	<insert id="register" parameterType="Board">
+		<![CDATA[
+            insert into tbl_board (title, content, writer)
+            values (#{title}, #{content}, #{writer})
+        ]]>
+	</insert>
+	
+	<!-- 게시글 수정하기 --> 
+	<update id="modify" parameterType="Board">
+		<![CDATA[
+			update tbl_board set title = #{title}, content = #{content}, updatedate = now()
+			where bno = #{bno}
+		]]>
+	</update>
+	
+	
+	<!-- 게시글 삭제하기 --> 
+	<delete id="delete">
+		delete from tbl_board where bno = #{bno}
+	</delete>	
+
+
+
+</mapper>
