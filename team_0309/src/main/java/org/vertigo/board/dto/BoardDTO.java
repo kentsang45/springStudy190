@@ -11,8 +11,10 @@ import java.sql.Date;
 public class BoardDTO {
 
     private Integer bno;
+    @NotEmpty(message = "제목을 입력하세요.")
     private String title;
-    private String         content;
+    @NotEmpty(message = "내용을 입력하세요.")
+    private String content;
     @NotEmpty
     private String    writer;
     private Date regdate, updatedate;

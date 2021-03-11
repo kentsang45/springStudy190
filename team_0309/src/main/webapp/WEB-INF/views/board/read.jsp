@@ -37,7 +37,6 @@
     <input type="hidden" name="type" value="${pageDTO.type}">
     <input type="hidden" name="keyword" value="${pageDTO.keyword}">
     <input type="hidden" name="bno" value="${board.bno}">
-   
 </form>
 
 <script>

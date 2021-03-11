@@ -1,7 +1,0 @@
-package org.kent.mapper;
-
-import org.kent.controller.AbstractControllerTests;
-
-public class TodoMapperTests extends AbstractControllerTests {
-
-}

@@ -5,7 +5,7 @@
 
 <div class="searchDiv">
 	<select class="searchType" name="searchType">
-		<option>----</option>
+		<option>없음</option>
 		<option value='t' ${pageDTO.type=='t' ? "selected" : ""}>제목</option>
 		<option value='c' ${pageDTO.type=='c' ? "selected" : ""}>내용</option>
 		<option value='w' ${pageDTO.type=='w' ? "selected" : ""}>작성자</option>

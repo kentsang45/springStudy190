@@ -24,6 +24,8 @@ public class PageDTO {
     
     private String keyword;
     
+    // t c w => tcw
+    // "t" "c" "w" 
     public String[] getArr() {
     	if(null == keyword || 0 == keyword.trim().length()) {
     		return null;
@@ -34,12 +36,15 @@ public class PageDTO {
     	
     	return type.split("");
     }
+    // (1P) 0번부터
+    // (2p) (-20 - 1 ) * 10 = 10, 10
+    // limit 0, 10
     
     // 음수가 나오면 안된다.
     // validation 처리를 할 수도 있다.
     // 알아서 해보자
     public int getSkip(){
-        return (page - 1) * perSheet < 0 ? 0 :  (page - 1) * perSheet ;
+        return (page - 1) * perSheet < 0 ? 0 : (page - 1) * perSheet;
     }
 
 }
