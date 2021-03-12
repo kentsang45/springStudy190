@@ -1,9 +1,0 @@
-package org.gyus.dto;
-
-public class TodoDTO {
-	
-	private Integer tno;
-	private String title;
-	private String regdate;
-
-}

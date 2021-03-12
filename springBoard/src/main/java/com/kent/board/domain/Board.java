@@ -1,8 +1,9 @@
 package com.kent.board.domain;
 
+import java.util.Date;
+
 import lombok.*;
 
-import java.sql.Date;
 
 @ToString
 @Getter

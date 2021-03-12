@@ -1,42 +1,27 @@
 <%@ include file="../includes/header.jsp" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
+
+
+<div class="container">
+
 <h1>
-	 ${board.bno} 번 게시글 편집 
+	 Editing... #${board.bno} 
 </h1>
-
-<!-- 제목 -->
-<div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="basic-addon1">제목</span>
-  </div>
-  <input name="boardTitle" type="text" class="form-control" placeholder="${board.title}" 
-  aria-label="title" aria-describedby="basic-addon1" value="${board.title}">
-  
-</div>
-
-
-<!-- 내용 -->
-<div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="basic-addon1">내용</span>
-  </div>
-  <input name="boardContent" type="text" class="form-control" placeholder="${board.content}" 
-  aria-label="content" aria-describedby="basic-addon1" value="${board.content}">
-</div>
 
 <!-- 글쓴이 -->
 <div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1">ID</span>
   </div>
-  <input type="text" class="form-control" placeholder="${board.writer}" aria-label="writer" aria-describedby="basic-addon1" readonly >
+  <input name="boardWriter" type="text" class="form-control" placeholder="${board.writer}" aria-label="writer" 
+  aria-describedby="basic-addon1" readonly value="${board.writer}">
 </div>
 
 <!-- 등록일 -->
 <div class="input-group mb-3">
   <div class="input-group-prepend">
-    <span class="input-group-text" id="basic-addon1">등록일</span>
+    <span class="input-group-text" id="basic-addon1">Register date</span>
   </div>
   <input type="text" class="form-control" placeholder="${board.regdate}" aria-label="regdate" aria-describedby="basic-addon1" readonly >
 </div>
@@ -44,16 +29,43 @@
 <!-- 마지막 수정일 -->
 <div class="input-group mb-3">
   <div class="input-group-prepend">
-    <span class="input-group-text" id="basic-addon1">마지막 수정일</span>
+    <span class="input-group-text" id="basic-addon1">Last Update</span>
   </div>
   <input type="text" class="form-control" placeholder="${board.updatedate}" aria-label="updatedate" aria-describedby="basic-addon1" readonly >
 </div>
 
+<!-- 제목 -->
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">Title</span>
+  </div>
+  <input name="boardTitle" type="text" class="form-control" placeholder="${board.title}" 
+  aria-label="title" aria-describedby="basic-addon1" value="${board.title}">
+  
+</div>
+
+<!-- 내용 -->
+<div class="form-group">
+    <label for="exampleFormControlTextarea1"></label>
+    <textarea class="form-control textArea" id="exampleFormControlTextarea1" rows="5" style="resize: none">${board.content}</textarea>
+  </div>
+
 
 <!-- 수정하기 버튼 -->
-<button class="modifyButton">수정하기</button>
-<button class="deleteButton">삭제하기</button>
-<button class="toListButton">목록으로</button>
+<div class="btn-group" role="group" aria-label="Third group">
+    <button class="modifyButton btn btn-success" type="button">Modify</button>
+</div>
+<div class="btn-group" role="group" aria-label="Third group">
+	<button class="deleteButton btn btn-danger" type="button">Delete</button>
+</div>
+<div class="btn-group" role="group" aria-label="Third group">
+	<button class="toListButton btn btn-secondary" type="button">Go Back</button>
+</div>
+
+<!-- CONTAINER OVER -->
+<!-- CONTAINER OVER -->
+<!-- CONTAINER OVER -->
+</div>
 
 
 <!-- MODAL -->
@@ -69,10 +81,10 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>헬로우</p>
+                <p>Hello world!</p>
             </div>
             <div class="modal-footer">
-                <button class="closeButton" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary closeButton" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -131,8 +143,7 @@
 			
 			var bnoInput = actionForm.querySelector("input[name='bno']");
 			var titleInput = document.querySelector("input[name='boardTitle']");
-			var contentInput = document.querySelector("input[name='boardContent']");
-			
+			var contentInput = document.querySelector(".textArea");
 			var data = {bno: bnoInput.value,
 						title: titleInput.value,
 						content: contentInput.value}

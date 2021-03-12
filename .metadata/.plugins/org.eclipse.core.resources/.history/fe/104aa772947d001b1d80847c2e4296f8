@@ -1,6 +1,0 @@
-package org.gyus.mapper;
-
-public interface TodoMapper {
-	
-	String selectOne();
-}

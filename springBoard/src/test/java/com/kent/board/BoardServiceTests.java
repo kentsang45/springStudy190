@@ -1,5 +1,7 @@
 package com.kent.board;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
@@ -12,6 +14,7 @@ import com.kent.board.domain.Board;
 import com.kent.board.dto.BoardDTO;
 import com.kent.board.service.BoardService;
 import com.kent.common.dto.PageDTO;
+import com.kent.common.util.DateFormatter;
 
 @ContextConfiguration(classes= BoardConfig.class)
 public class BoardServiceTests extends AbstractTests{
@@ -26,12 +29,15 @@ public class BoardServiceTests extends AbstractTests{
 	}
 	
 	@Test
-	public void testGetOne() {
-		show("Board : " + service.getOne(10));
+	public void testGetOne() throws Exception {
+		BoardDTO board = service.getOne(131073);
+		
+		show("Board : " + board);
+		show("Date : " + board.getUpdatedate());
 	}
 	
 	@Test
-	public void testRegister() {
+	public void testRegister() throws Exception {
 		Board board = Board.builder().title("TEST_TITLE").content("TEST_CONTENT").writer("TEST_WRITER").build();
 		service.register(service.toDTO(board));
 		show("Board Register Done...");
@@ -39,7 +45,7 @@ public class BoardServiceTests extends AbstractTests{
 	
 	// 131058
 	@Test
-	public void testModify() {
+	public void testModify()  throws Exception {
 		Board board = Board.builder().bno(131059).title("MOD_TITLE").content("MOD_CONTENT").writer("MOD_WRITER").build();
 		service.modify(service.toDTO(board));
 		show("Board : " + service.getOne(131059));
@@ -59,6 +65,24 @@ public class BoardServiceTests extends AbstractTests{
 		List<BoardDTO> list = service.getPageList(page);
 		list.forEach(b->show(b));
 		show("Board PageList Done...");
+	}
+	
+	
+	
+	
+	@Test
+	public void testDateFormatter() {
+		Date now = new Date();
+		Date reg = service.getOne(131077).getUpdatedate(); 
+		
+		Long nowL = now.getTime();
+		Long regL = reg.getTime();
+		
+		show("NOW : " + now);
+		show("REG : " + reg);
+		show((regL-nowL)/1000/60/60 + "");
+		
+		show("WHEN : " + DateFormatter.fromDateToString(reg));
 	}
 //	                                                                                                                                                                                                           
 }

@@ -1,23 +1,26 @@
 <%@ include file="../includes/header.jsp" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
+<br></br>
+
+<div class="container">
 <h1>
-	게시글을 등록하세요!  
+	Write what you think!
 </h1>
 
 
 <!-- 제목 -->
 <div class="input-group mb-3">
   <div class="input-group-prepend">
-    <span class="input-group-text" id="basic-addon1">제목</span>
+    <span class="input-group-text" id="basic-addon1">Title</span>
   </div>
   <input name="boardTitle" type="text" class="form-control"
-  aria-label="title" aria-describedby="basic-addon1" value="제목">
+  aria-label="title" aria-describedby="basic-addon1">
   
 </div>
 
 
-<!-- 내용 -->
+<!-- 내용 
 <div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1">내용</span>
@@ -25,6 +28,8 @@
   <input name="boardContent" type="text" class="form-control" placeholder="${board.content}" 
   aria-label="content" aria-describedby="basic-addon1" value="내용">
 </div>
+-->
+
 
 <!-- 글쓴이 -->
 <div class="input-group mb-3">
@@ -35,9 +40,19 @@
   aria-label="writer" aria-describedby="basic-addon1" readonly value="TESTWRITER">
 </div>
 
-<button class="registerButton">등록하기</button>
-<button class="listButton">목록으로</button>
-
+<!-- 내용 -->
+<div class="form-group">
+    <label for="exampleFormControlTextarea1"></label>
+    <textarea class="form-control textArea" id="exampleFormControlTextarea1" rows="5" style="resize: none"></textarea>
+</div>
+  
+<div class="btn-group" role="group" aria-label="Third group">
+    <button class="registerButton btn btn-primary" type="button">Write</button>
+</div>
+<div class="btn-group" role="group" aria-label="Third group">
+	<button class="listButton btn btn-secondary" type="button">Back To List</button>
+</div>
+</div>
 
 
 <div class="modal" id="registerModal" tabindex="-1" role="dialog">
@@ -53,7 +68,7 @@
                 <p>게시글이 등록되었습니다.</p>
             </div>
             <div class="modal-footer">
-                <button class="closeButton" type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>
+                <button type="button" class="btn btn-secondary closeButton" data-dismiss="modal" >Close</button>
             </div>
         </div>
     </div>
@@ -105,9 +120,10 @@
 		e.preventDefault();
 		// ajax
 		var titleValue = document.querySelector("input[name='boardTitle']").value;
-		var contentValue = document.querySelector("input[name='boardContent']").value;
+		// var contentValue = document.querySelector("input[name='boardContent']").value;
+		var contentValue = document.querySelector(".textArea").value;
 		var writerValue = document.querySelector("input[name='boardWriter']").value;
-
+		console.log("contentValue : " + contentValue);
 		var data={title:titleValue, content:contentValue, writer:writerValue}
 		
 		var regResult = registerAjax(data);

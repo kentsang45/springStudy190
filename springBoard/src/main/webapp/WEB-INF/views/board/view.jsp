@@ -1,37 +1,38 @@
 <%@ include file="../includes/header.jsp" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-<h1>
-	Board view : ${board.bno}  
-</h1>
+<div class="container">
+<button class="btn btn-default btn-lg active">
+	#${board.bno} 게시글!
+</button>
 
-<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">BNO</th>
-      <th scope="col">TITLE</th>
-      <th scope="col">CONTENT</th>
-      <th scope="col">WRITER</th>
-      <th scope="col">REGDATE</th>
-      <th scope="col">UPDATE</th>
-    </tr>
-  </thead>
-  <tbody>
-  
-    <tr>
-      <th scope="row">${board.bno}</th>
-      <td>${board.title}</td>
-      <td>${board.content}</td>
-      <td>${board.writer}</td>
-      <td>${board.regdate}</td>
-      <td>${board.updatedate}</td>
-    </tr>
-    
-  </tbody>
-</table>
 
-<button class="editButton">게시글 편집</button>
-<button class="toListButton">목록으로</button>
+<div class="input-group">
+  <div class="input-group-prepend">
+ <span class="input-group-text">#${board.bno}</span>
+ </div>
+  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" value="${board.title}" disabled
+   	style="background: #ffffff;">
+  <div class="input-group-prepend">
+    <span class="input-group-text">Writer : ${board.writer}</span>
+    <span class="input-group-text">Last update : ${board.updatedate}</span>
+  </div>
+</div>
+
+<div class="form-group">
+    <textarea class="form-control textArea" id="exampleFormControlTextarea1" rows="10" 
+    style="resize: none; background: #ffffff; border: none;" readonly style="">${board.content}</textarea>
+</div>
+
+
+<div class="btn-group editButton" role="group" aria-label="Third group">
+    <button class="editButton btn btn-primary" type="button">Edit</button>
+</div>
+<div class="btn-group" role="group" aria-label="Third group">
+	<button class="toListButton btn btn-secondary" type="button">Go back</button>
+</div>
+
+</div>
 
 <!-- ACTION FORM -->
 <!-- ACTION FORM -->

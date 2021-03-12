@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="vendor"/>
+		<item key="selection" value="a:hover"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="a:hover"/>
+			<item value="a"/>
+			<item value="a {"/>
+			<item value="#4e73df"/>
 			<item value="vendor"/>
 			<item value="junit"/>
 			<item value="post add"/>
 			<item value="module"/>
 		</list>
 		<list key="replacehistory">
+			<item value="#000000"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1543"/>
+		<item key="DIALOG_X_ORIGIN" value="-377"/>
 		<item key="DIALOG_Y_ORIGIN" value="133"/>
 		<item key="DIALOG_WIDTH" value="288"/>
 		<item key="DIALOG_HEIGHT" value="391"/>

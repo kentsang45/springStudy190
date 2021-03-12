@@ -1,5 +1,6 @@
 package com.kent.board;
 
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
@@ -30,7 +31,10 @@ public class BoardMapperTests extends AbstractTests {
 	
 	@Test
 	public void testGetOne() {
+		Board board = mapper.getOne(10);
+		Date date = board.getUpdatedate();
 		show("Board : " + mapper.getOne(10));
+		show("Date : " + date);
 	}
 	
 	@Test
@@ -62,5 +66,17 @@ public class BoardMapperTests extends AbstractTests {
 		List<Board> list = mapper.getPageList(page);
 		list.forEach(b->show(b));
 		show("Board PageList Done...");
+	}
+	
+	
+	
+	
+	
+	@Test
+	public void testSqlTime() {
+		Date sqlNow = mapper.getOne(131077).getUpdatedate();
+		java.util.Date utilDate = new java.util.Date(sqlNow.getTime() - 9 * 1000 * 60 * 60);
+		
+		show(utilDate);
 	}
 }

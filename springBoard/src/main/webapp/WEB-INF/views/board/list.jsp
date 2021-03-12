@@ -1,40 +1,40 @@
 <%@ include file="../includes/header.jsp" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-<h1>게시판</h1>
 
-
-<button class="registerButton btn-success btn-sm" type="button">게시글 등록</button>
-<br></br>
-
-<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+<div class="container">
+<div class="listNav">
+<div class="listNavEle">
+	<button class="registerButton btn btn-outline-dark btn" type="button">Write</button>
+</div>
+<div class="btn-toolbar listNavEle" role="toolbar" aria-label="Toolbar with button groups">
 	<div class="input-group mb-3">
   		<select class="custom-select searchType" name="searchType">
-    	<option>없음</option>
-		<option value='t' ${pageDTO.type=='t' ? "selected" : ""}>제목</option>
-		<option value='c' ${pageDTO.type=='c' ? "selected" : ""}>내용</option>
-		<option value='w' ${pageDTO.type=='w' ? "selected" : ""}>작성자</option>
-		<option value='tc' ${pageDTO.type=='tc' ? "selected" : ""}>제목 + 내용</option>
-		<option value='tcw' ${pageDTO.type=='tcw' ? "selected" : ""}>제목 + 내용 + 작성자</option>
+    	<option>None</option>
+		<option value='t' ${pageDTO.type=='t' ? "selected" : ""}>Title</option>
+		<option value='c' ${pageDTO.type=='c' ? "selected" : ""}>Contents</option>
+		<option value='w' ${pageDTO.type=='w' ? "selected" : ""}>ID</option>
+		<option value='tc' ${pageDTO.type=='tc' ? "selected" : ""}>Title + Contents</option>
+		<option value='tcw' ${pageDTO.type=='tcw' ? "selected" : ""}>Title + Contents + ID</option>
   		</select>
    		<input type="text" name="searchKeyword" aria-label="Text input with segmented dropdown button"
    			value="<c:out value='${pageDTO.keyword}'/>">
    		<div class="input-group-append">
-   			<button class="btn btn-outline-secondary searchButton" type="button">검색</button>
+   			<button class="btn btn-outline-secondary searchButton" type="button">Search</button>
    		</div>
    </div>
 </div>
-
+</div>
 <!-- LIST -->
 <!-- LIST -->
 <!-- LIST -->
 <table class="table">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">BNO</th>
-      <th scope="col">TITLE</th>
-      <th scope="col">WRITER</th>
-      <th scope="col">UPDATE_DATE</th>
+      <th scope="col">No</th>
+      <th scope="col">Title</th>
+      <th scope="col">ID</th>
+      <th scope="col">Lastest update</th>
     </tr>
   </thead>
   <tbody>
@@ -44,7 +44,8 @@
       		<td>${board.bno}</td>
       		<td><a class="boardView" href="<c:out value="${board.bno}"/>">${board.title}</a></td>
       		<td>${board.writer}</td>
-      		<td>${board.updatedate}</td>
+      		<td class="dateArea" data-toggle="popover" data-content="${board.updatedateStr}" >
+      			${board.updatedateWord}</td>
     	</tr>
     </c:forEach>
     
@@ -76,7 +77,7 @@
      </c:if>
   </ul>
 </nav>
-
+</div>
 <!-- ACTION FORM -->
 <!-- ACTION FORM -->
 <!-- ACTION FORM -->
@@ -102,9 +103,10 @@
 	document.querySelector(".pagination").addEventListener("click", function(e){
 		e.preventDefault()
 		var target = e.target;
+		
 		// 페이지 버튼을 누르면 해당 페이지 숫자를 가져온다.
 		var pageNum = target.getAttribute("href");
-		if(null==pageNum){pageNum = 0;}
+		if(null==pageNum){pageNum = 0; return;}
 		
 		// 가져온 숫자를 actionForm에 넣어준다
 		actionForm.querySelector("input[name='page']").value = pageNum;
@@ -126,6 +128,28 @@
 		}
 	)
 	
+	//======================
+	// DATE AREA Popup
+	//======================
+	document.querySelectorAll(".dateArea").forEach(
+		v=>{v.addEventListener("click", function(e){
+			// e.preventDefault();
+			// date를 가져온다.
+			// var date = e.target.getAttribute("data-date");
+	    	// console.log("DATE : " + date);
+	    		$this = $(this);
+	    		$this.popover('show')
+	    		
+	    		setTimeout(function(){
+	    			$this.popover('hide')
+	    			console.log("setTimeOut");
+	    		}, 1500)
+	    		
+			}, false)
+		}
+	)
+		
+		
 	//======================
 	// REGISTER BUTTON
 	//======================

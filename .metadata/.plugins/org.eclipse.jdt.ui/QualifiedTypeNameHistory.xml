@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="org.vertigo.common.config.RootConfig"/>
-    <fullyQualifiedTypeName name="org.vertigo.common.config.ServletConfig"/>
-    <fullyQualifiedTypeName name="org.aspectj.lang.annotation.Before"/>
-    <fullyQualifiedTypeName name="org.junit.Before"/>
-    <fullyQualifiedTypeName name="org.springframework.test.web.servlet.setup.MockMvcBuilders"/>
     <fullyQualifiedTypeName name="org.vertigo.AbstractControllerTests"/>
     <fullyQualifiedTypeName name="org.springframework.test.web.servlet.request.MockMvcRequestBuilders"/>
     <fullyQualifiedTypeName name="org.vertigo.common.dto.PageMaker"/>
@@ -46,12 +41,10 @@
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="org.springframework.web.context.WebApplicationContext"/>
     <fullyQualifiedTypeName name="org.springframework.test.web.servlet.MockMvc"/>
-    <fullyQualifiedTypeName name="org.junit.Test"/>
     <fullyQualifiedTypeName name="com.kent.common.config.RootConfig"/>
     <fullyQualifiedTypeName name="com.kent.common.config.ServletConfig"/>
     <fullyQualifiedTypeName name="com.kent.common.config.WebConfig"/>
     <fullyQualifiedTypeName name="org.springframework.test.context.ContextConfiguration"/>
-    <fullyQualifiedTypeName name="lombok.extern.log4j.Log4j"/>
     <fullyQualifiedTypeName name="com.kent.board.config.BoardConfig"/>
     <fullyQualifiedTypeName name="com.kent.AbstractControllerTests"/>
     <fullyQualifiedTypeName name="org.springframework.util.LinkedMultiValueMap"/>
@@ -60,4 +53,11 @@
     <fullyQualifiedTypeName name="org.springframework.validation.BindingResult"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
     <fullyQualifiedTypeName name="org.springframework.validation.ObjectError"/>
+    <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+    <fullyQualifiedTypeName name="lombok.Data"/>
+    <fullyQualifiedTypeName name="com.kent.common.util.DateFormatter"/>
+    <fullyQualifiedTypeName name="org.junit.Test"/>
+    <fullyQualifiedTypeName name="java.sql.Date"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="lombok.extern.log4j.Log4j"/>
 </qualifiedTypeNameHistroy>

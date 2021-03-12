@@ -1,7 +1,0 @@
-package org.gyus.mapper;
-
-public class TodoMapper {
-	
-	String todo;
-
-}

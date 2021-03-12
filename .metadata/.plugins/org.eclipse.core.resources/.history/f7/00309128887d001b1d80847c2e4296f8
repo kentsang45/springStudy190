@@ -1,9 +1,0 @@
-package org.gyus.mapper;
-
-public interface TimeMapper {
-	
-	String getTime();
-	
-	
-
-}

@@ -72,9 +72,13 @@ public class BoardController {
 
 			return new ResponseEntity(messageMap, HttpStatus.OK);
 		}
-
-		boardService.register(boardDTO);
-
+		
+		try {
+			boardService.register(boardDTO);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		messageMap.put("result", "success");
 
 		// 5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.
@@ -102,20 +106,30 @@ public class BoardController {
 		model.addAttribute("board", boardService.getOne(bno));
 	}
 
-	@RequestMapping(value = "/modify", produces = { "application/json" })
+	@PostMapping(value = "/modify", produces = { "application/json" })
 	@ResponseBody
 	public ResponseEntity<Map<String, String>> postModify(PageDTO pageDTO, @Valid @RequestBody BoardDTO boardDTO, BindingResult result) {
 		log.info("============== BOARD CONTROLLER : postModify =================");
 		log.info(boardDTO);
 
-		boardService.modify(boardDTO);
-
 		Map<String, String> messageMap = new HashMap();
+		
+		if (result.hasErrors()) {
+			log.info("====================ERROR===================");
+
+			messageMap.put("result", "fail");
+			messageMap.put("message", validationCheck(result));
+
+			return new ResponseEntity(messageMap, HttpStatus.OK);
+		}
+		
+		try {
+			boardService.modify(boardDTO);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		messageMap.put("result", "success");
-		messageMap.put("message", validationCheck(result));
-		messageMap.put("bno", boardDTO.getBno() + "");
-		messageMap.put("title", boardDTO.getTitle());
-		messageMap.put("content", boardDTO.getContent());
 
 		return new ResponseEntity(messageMap, HttpStatus.OK);
 	}

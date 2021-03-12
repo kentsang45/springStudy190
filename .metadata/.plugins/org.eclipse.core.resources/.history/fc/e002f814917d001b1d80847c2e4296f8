@@ -1,9 +1,0 @@
-package org.gyus.entity;
-
-public class Todo {
-	
-	int tno;
-	String title;
-	String regdate;
-
-}

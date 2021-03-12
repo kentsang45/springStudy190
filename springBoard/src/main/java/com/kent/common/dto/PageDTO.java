@@ -30,7 +30,7 @@ public class PageDTO {
     	if(null == keyword || 0 == keyword.trim().length()) {
     		return null;
     	}
-    	if(null == type || 0 == type.trim().length()) {
+    	if(null == type || type.equals("None") || 0 == type.trim().length()) {
     		return null;
     	}
     	

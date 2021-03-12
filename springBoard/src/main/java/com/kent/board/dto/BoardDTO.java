@@ -1,6 +1,7 @@
 package com.kent.board.dto;
 
-import java.sql.Date;
+
+import java.util.Date;
 
 import javax.validation.constraints.NotEmpty;
 
@@ -14,13 +15,12 @@ public class BoardDTO {
 
     private Integer bno;
     @NotEmpty
-    @Length(min=10)
+    @Length(min=5)
     private String title;
     @NotEmpty
-    @Length(min=10)
+    @Length(min=5)
     private String content;
-    @NotEmpty
-    private String    writer;
-    private Date regdate, updatedate;
-
+    private String writer;
+    String updatedateWord, updatedateStr;
+    Date regdate, updatedate;
 }
