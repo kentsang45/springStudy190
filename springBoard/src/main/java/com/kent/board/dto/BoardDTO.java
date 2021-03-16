@@ -23,4 +23,6 @@ public class BoardDTO {
     private String writer;
     String updatedateWord, updatedateStr;
     Date regdate, updatedate;
+    
+    private Integer replyCount;
 }

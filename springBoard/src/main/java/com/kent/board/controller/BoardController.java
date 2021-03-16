@@ -44,6 +44,11 @@ public class BoardController {
 
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("list", boardList);
+		
+		log.info("============= BOARD CONTROLLER : getList ===============");
+		log.info(page);
+		log.info("SKIP : " + page.getSkip());
+		log.info(pageMaker);
 	}
 
 	// =========== REGISTER ==============
@@ -64,6 +69,7 @@ public class BoardController {
 
 		log.info("boardDTO: " + boardDTO);
 
+		// Valid 실패
 		if (result.hasErrors()) {
 			log.info("====================ERROR===================");
 
@@ -72,14 +78,17 @@ public class BoardController {
 
 			return new ResponseEntity(messageMap, HttpStatus.OK);
 		}
-		
+
+		// Valid 성공
+		Integer resultBno = 0;
 		try {
-			boardService.register(boardDTO);
-		} catch(Exception e) {
+			resultBno = boardService.register(boardDTO);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		messageMap.put("result", "success");
+		messageMap.put("bno", resultBno + "");
 
 		// 5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.
 
@@ -108,12 +117,13 @@ public class BoardController {
 
 	@PostMapping(value = "/modify", produces = { "application/json" })
 	@ResponseBody
-	public ResponseEntity<Map<String, String>> postModify(PageDTO pageDTO, @Valid @RequestBody BoardDTO boardDTO, BindingResult result) {
+	public ResponseEntity<Map<String, String>> postModify(PageDTO pageDTO, @Valid @RequestBody BoardDTO boardDTO,
+			BindingResult result) {
 		log.info("============== BOARD CONTROLLER : postModify =================");
 		log.info(boardDTO);
 
 		Map<String, String> messageMap = new HashMap();
-		
+
 		if (result.hasErrors()) {
 			log.info("====================ERROR===================");
 
@@ -122,13 +132,13 @@ public class BoardController {
 
 			return new ResponseEntity(messageMap, HttpStatus.OK);
 		}
-		
+
 		try {
 			boardService.modify(boardDTO);
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		messageMap.put("result", "success");
 
 		return new ResponseEntity(messageMap, HttpStatus.OK);
@@ -148,9 +158,9 @@ public class BoardController {
 		return new ResponseEntity(messageMap, HttpStatus.OK);
 	}
 
-	//==============================
+	// ==============================
 	// VALIDATION CHECK
-	//==============================	
+	// ==============================
 	private String validationCheck(BindingResult result) {
 		// result.getAllErrors().forEach(e->{ log.info(e.getDefaultMessage()); });
 		String errorCode = result.getAllErrors().get(0).getCode();
@@ -169,8 +179,37 @@ public class BoardController {
 			errorMessage = errorValue + "을 적어 주세요.";
 			break;
 		}
-		
+
 		return errorMessage;
 	}
 
+	// ==============================
+	// NEW LIST
+	// ==============================
+	@GetMapping("/newlist")
+	public void getNewList(PageDTO page, Model model) {
+		log.info("===== BOARD CONTROLLER : getNewList =====");
+		PageMaker pageMaker = new PageMaker(page, boardService.getTotalCount(page));
+		List<BoardDTO> boardList = boardService.getPageList(page);
+
+		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("list", boardList);
+	}
+
+	// ==============================
+	// AJAX LIST
+	// ==============================
+	@RequestMapping(value = "/getMoreList", produces = { "application/json" })
+	@ResponseBody
+	public ResponseEntity<List<BoardDTO>> getMoreList(@RequestBody PageDTO page) {
+		log.info("===== BOARD CONTROLLER : getMoreList =====");
+		PageMaker pageMaker = new PageMaker(page, boardService.getTotalCount(page));
+		List<BoardDTO> boardList = boardService.getPageList(page);
+
+		// Map<String, Object> map;
+		// "" + i, list[i]
+		// "pageMaker", pageMaker
+		
+		return new ResponseEntity(boardList, HttpStatus.OK);
+	}
 }

@@ -42,7 +42,9 @@
   	<c:forEach items="${list}" var="board">
     	<tr>
       		<td>${board.bno}</td>
-      		<td><a class="boardView" href="<c:out value="${board.bno}"/>">${board.title}</a></td>
+      		<td><a class="boardView" href="<c:out value="${board.bno}"/>">${board.title} 
+      		<c:if test="${board.replyCount != 0}">[ ${board.replyCount} ]</c:if>
+      		</a></td>
       		<td>${board.writer}</td>
       		<td class="dateArea" data-toggle="popover" data-content="${board.updatedateStr}" >
       			${board.updatedateWord}</td>
@@ -180,6 +182,8 @@
 		actionForm.submit();
 		
 	}, false)
+	
+	
 </script>
 
 

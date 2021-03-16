@@ -17,7 +17,7 @@ public class PageDTO {
     @Builder.Default
     private int page = 1;
     @Builder.Default
-    private int perSheet = 10;
+    private int perSheet = 6;
 
     // 검색할 타입과 키워드 추가
     private String type;

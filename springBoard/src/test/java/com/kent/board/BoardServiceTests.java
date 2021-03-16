@@ -38,8 +38,13 @@ public class BoardServiceTests extends AbstractTests{
 	
 	@Test
 	public void testRegister() throws Exception {
-		Board board = Board.builder().title("TEST_TITLE").content("TEST_CONTENT").writer("TEST_WRITER").build();
-		service.register(service.toDTO(board));
+		BoardDTO dto = new BoardDTO();
+		dto.setTitle("TEST_TITLE");
+		dto.setContent("TEST_CONTENT");
+		dto.setWriter("TEST_WRITER");
+		Integer lastIndex = service.register(dto);
+		
+		show("Last Index : " + lastIndex);
 		show("Board Register Done...");
 	}
 	

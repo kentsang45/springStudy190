@@ -42,6 +42,7 @@ public class BoardMapperTests extends AbstractTests {
 		Board board = Board.builder().title("TEST_TITLE").content("TEST_CONTENT").writer("TEST_WRITER").build();
 		mapper.register(board);
 		show("Board Register Done...");
+		show("lastIndex : " +  board.getBno());
 	}
 	
 	// 131058

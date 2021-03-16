@@ -23,7 +23,7 @@ public class DateFormatter {
 		if (1 > (result / 1000 / 60)) {
 			resultStr = "just now";
 		} else if (1 > (result/1000/60/60)) {
-			resultStr = result / 1000 / 60 + " minutes ago";
+			resultStr = result / 1000 / 60 + " minute(s) ago";
 		} else if(1 > (result/1000/60/60/24)){
 			resultStr = result / 1000 / 60 /60 + " hour(s) ago";
 		} else if (1 > (result / 1000 / 60 / 60 / 24 / 7)){

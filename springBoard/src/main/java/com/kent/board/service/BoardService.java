@@ -18,7 +18,7 @@ public interface BoardService {
 	BoardDTO getOne(Integer bno);
 
 	// 게시글 등록하기
-	void register(BoardDTO board) throws Exception;
+	Integer register(BoardDTO board) throws Exception;
 
 	// 게시글 수정하기
 	void modify(BoardDTO board) throws Exception;
@@ -31,7 +31,7 @@ public interface BoardService {
 
 	default Board toDomain(BoardDTO dto) throws Exception{
 		return Board.builder().bno(dto.getBno()).title(dto.getTitle()).content(dto.getContent()).writer(dto.getWriter())
-				.regdate(dto.getRegdate()).updatedate(dto.getUpdatedate()).build();
+				.regdate(dto.getRegdate()).updatedate(dto.getUpdatedate()).replyCount(dto.getReplyCount()).build();
 	}
 
 	default BoardDTO toDTO(Board dto) {
@@ -40,6 +40,7 @@ public interface BoardService {
 		boardDTO.setTitle(dto.getTitle());
 		boardDTO.setContent(dto.getContent());
 		boardDTO.setWriter(dto.getWriter());
+		boardDTO.setReplyCount(dto.getReplyCount());
 		
 		boardDTO.setRegdate(dto.getRegdate());
 		boardDTO.setUpdatedate(dto.getUpdatedate());

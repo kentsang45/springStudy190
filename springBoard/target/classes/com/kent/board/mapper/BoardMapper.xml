@@ -51,11 +51,14 @@
 	</select>
 	
 	<!-- 게시글 등록하기--> 
-	<insert id="register" parameterType="Board">
+	<insert id="register" parameterType="Board">                                                                                                                                                 ">
 		<![CDATA[
             insert into tbl_board (title, content, writer)
             values (#{title}, #{content}, #{writer})
         ]]>
+    <selectKey resultType="int" keyProperty="bno" order="AFTER">
+        SELECT LAST_INSERT_ID()
+    </selectKey>   
 	</insert>
 	
 	<!-- 게시글 수정하기 --> 

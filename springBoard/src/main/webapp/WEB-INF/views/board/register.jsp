@@ -132,7 +132,7 @@
 			
 			// modal에 띄울 메시지			
 			if(res.result == "success"){
-				regModal.find(".modal-body").html("게시글이 등록되었습니다.");
+				regModal.find(".modal-body").html(res.bno+ "번 게시글이 등록되었습니다.");
 				// Close 눌러서 list로 돌아가기
 				document.querySelector(".closeButton").setAttribute("onclick", "backToList()");
 			} else{	
