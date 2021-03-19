@@ -2,10 +2,13 @@ package com.kent.board.dto;
 
 
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
+
+import com.kent.common.dto.AttachFileDTO;
 
 import lombok.Data;
 
@@ -25,4 +28,6 @@ public class BoardDTO {
     Date regdate, updatedate;
     
     private Integer replyCount;
+
+    private List<AttachFileDTO> fileList;
 }

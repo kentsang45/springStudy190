@@ -23,6 +23,7 @@ import javax.sql.DataSource;
 @EnableAspectJAutoProxy
 @EnableTransactionManagement
 @ComponentScan(basePackages = { "com.kent.common.aop" })
+
 @Log4j
 public class RootConfig {
 

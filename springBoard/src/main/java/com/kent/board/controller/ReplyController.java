@@ -55,18 +55,18 @@ public class ReplyController {
 //	}
 //	
 //	// 댓글 등록
-//	@PostMapping("/{page}")
-//	public ResponseEntity<SampleDTO> postSample(
-//			@RequestBody SampleDTO dto,
-//			@PathVariable(name="page") Integer page,
-//			@RequestParam(name="perSheet") Integer perSheet){
-//		
-//		log.info("============ post sample ===============");
-//		log.info(dto);
-//		log.info("page : " + page);
-//		log.info("perSheet : " + perSheet);
-//		return new ResponseEntity<SampleDTO>(dto, HttpStatus.OK);
-//	}
+	@PostMapping("/{page}")
+	public ResponseEntity<ReplyDTO> postSample(
+			@RequestBody ReplyDTO dto,
+			@PathVariable(name="page") Integer page,
+			@RequestParam(name="perSheet") Integer perSheet){
+		
+		log.info("============ post sample ===============");
+		log.info(dto);
+		log.info("page : " + page);
+		log.info("perSheet : " + perSheet);
+		return new ResponseEntity<ReplyDTO>(dto, HttpStatus.OK);
+	}
 	
 	// 댓글 조회
 	// 받을 때 이런 애만 사용하겠다 = consumes

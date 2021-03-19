@@ -3,8 +3,11 @@
 
 <style>
 	.boarder{
-		border-bottom: 1em;
-		line-height: 1.5;
+	margin-top:1em;
+	margin-bottom:1em;
+        background-color: darkgray;
+        height:0.5em;
+        width:100%;
 	}
 </style>
 
@@ -15,7 +18,7 @@
 
 
 
-<div class="input-group boarder">
+<div class="input-group">
   <div class="input-group-prepend">
  <span class="input-group-text">${board.bno}</span>
  </div>
@@ -33,16 +36,8 @@
     style="resize: none; background: #ffffff; border: none;" readonly style="">${board.content}</textarea>
 </div>
 
-<!-- REPLY -->
-<table class="table replyTable">
- 
-</table>
-
-<!-- PAGINATION -->
-<nav aria-label='Page navigation example' class="replyPagination">
-</nav>
-
-
+<!-- LINE -->
+<div class="boarder"></div>
 <!-- BUTTONS -->
 <div class="btn-group editButton" role="group" aria-label="Third group">
     <button class="editButton btn btn-primary" type="button">Edit</button>
@@ -51,6 +46,28 @@
 	<button class="toListButton btn btn-secondary" type="button">Go back</button>
 </div>
 
+<br></br>
+<h4>${board.replyCount} replies</h4>
+
+<!-- REPLY -->
+<table class="table replyTable">
+</table>
+
+<!-- PAGINATION -->
+<nav aria-label='Page navigation example' class="replyPagination">
+</nav>
+
+
+<!-- 댓글 등록 -->
+<label for="basic-url">Comment as ${board.writer}</label>
+<div class="input-group">
+  <textarea class="form-control replyTest" aria-label="With textarea"></textarea>
+    <div class="input-group-append">
+   <button class="commentButton btn btn-outline-secondary" type="button">Comment</button>
+  </div>
+</div>
+
+<!-- BODY DIV -->
 </div>
 
 <!-- ACTION FORM -->
@@ -83,9 +100,34 @@
 		actionForm.submit();
 	}, false)
 
+	//======================
+	// REPLY REGISTER AJAX
+	//======================
+	function registerReply(data){
+		return fetch("http://localhost:8080/replies/pages/"+data.page+"/"+data.bno ,
+	            { method: "get" }
+	        ).then(res=>{				
+				if(!res.ok){ throw new Error(res); }
+				console.log("=========== fetch done ==========")
+				return res.json();
+			})
+			.catch(res=>{
+				console.log("============ catch ===============");
+				console.log(res);
+				return res;
+			})
+	}	
 	
 	//======================
-	// REPLY AJAX
+	// 댓글 등록 버튼
+	//======================
+	document.querySelector(".commentButton").addEventListener("click", function(e){
+		
+	})
+	
+	
+	//======================
+	// REPLY GET AJAX
 	//======================
 	function getReplyList(data){
 		return fetch("http://localhost:8080/replies/pages/"+data.page+"/"+data.bno ,
@@ -170,7 +212,7 @@
 			}
 		})
 		
-		// pagenation click
+		// pagination click
 	document.querySelector(".replyPagination").addEventListener("click", function(e){
 		e.preventDefault()
 		var target = e.target;

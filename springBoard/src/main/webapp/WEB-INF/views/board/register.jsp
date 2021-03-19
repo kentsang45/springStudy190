@@ -16,7 +16,7 @@
   </div>
   <input name="boardTitle" type="text" class="form-control"
   aria-label="title" aria-describedby="basic-addon1">
-  
+
 </div>
 
 
@@ -45,7 +45,26 @@
     <label for="exampleFormControlTextarea1"></label>
     <textarea class="form-control textArea" id="exampleFormControlTextarea1" rows="5" style="resize: none"></textarea>
 </div>
-  
+
+<!-- 파일 업로드 -->
+<div class="input-group">
+  <div class="custom-file uploadDiv">
+    <input name='uploadInput' type="file" multiple='multiple' class="custom-file-input" id="inputGroupFile04">
+    <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+  </div>
+  <!--
+  <div class="input-group-append">
+    <button class="uploadButton btn btn-outline-secondary" type="button">Upload</button>
+  </div>
+  -->
+</div>
+
+<!-- 업로드한 파일 리스트 -->
+<div class="uploadList list-group">
+</div>
+
+<br></br>
+<!-- BUTTONS -->
 <div class="btn-group" role="group" aria-label="Third group">
     <button class="registerButton btn btn-primary" type="button">Write</button>
 </div>
@@ -82,8 +101,12 @@
 </form>
 
 <script>
-	var actionForm = document.querySelector(".actionForm");
+	window.addEventListener('DOMContentLoaded', (e)=>{
 
+	var actionForm = document.querySelector(".actionForm");
+	var uploadList = document.querySelector(".uploadList");
+	var uploadInput = document.querySelector("input[name='uploadInput']");
+	var formData = new FormData();
 	function backToList(){
 		actionForm.submit();
 	}
@@ -98,8 +121,7 @@
 			headers:{'Content-Type':'application/json'},
 			body:JSON.stringify(data)				
 		})
-		.then(res=>{
-			
+		.then(res=>{			
 			if(!res.ok){
 				throw new Error(res);
 			}
@@ -119,13 +141,22 @@
 	document.querySelector(".registerButton").addEventListener("click", function(e){
 		e.preventDefault();
 		// ajax
+		// 1. DOM 데이터 불러오기
 		var titleValue = document.querySelector("input[name='boardTitle']").value;
 		// var contentValue = document.querySelector("input[name='boardContent']").value;
 		var contentValue = document.querySelector(".textArea").value;
 		var writerValue = document.querySelector("input[name='boardWriter']").value;
 		console.log("contentValue : " + contentValue);
-		var data={title:titleValue, content:contentValue, writer:writerValue}
 		
+		// 2. 보낼 데이터
+		var fileArr=[
+			{fileName:'aaa.jpg', uuid:'1111', uploadPath:'2021/03/18'},	
+			{fileName:'bbb.jpg', uuid:'2222', uploadPath:'2021/03/18'}
+		];
+		
+		var data={title:titleValue, content:contentValue, writer:writerValue, fileList:fileArr}
+		
+		// 3. AJAX 보내기
 		var regResult = registerAjax(data);
 		regResult.then(res=>{
 			var regModal = $("#registerModal");
@@ -150,6 +181,71 @@
 	document.querySelector(".listButton").addEventListener("click", function(e){
 		e.preventDefault();
 		backToList();
+	})
+	
+	
+	//==========================
+	// FILE UPLOAD BUTTON
+	//==========================
+	document.querySelector(".uploadButton").addEventListener("click", function(e){
+		// 1. input에 있는 file들 불러오기
+		var input = document.querySelector("input[name='uploadInput']");
+		var files = input.files;
+		// 2. formData에 넣기
+		
+		
+		
+		
+		// 3. AJAX로 보내기
+		fetch("http://localhost:8080/board/upload", {
+			method: 'post',
+			body: formData
+		}).then(res=>res.json())
+		.then(jsonMap=>{
+			if("fail" == jsonMap.message){
+				
+			} else{
+				// 성공한 경우
+				var list = jsonMap.list;
+				var innerStr = "";
+				for(var i = 0; i < list.length; ++i){
+					innerStr += "<button type='button' class='list-group-item list-group-item-action'>"+ list[i].fileName + "</button>";
+				}
+				
+				uploadList.innerHTML += innerStr;
+			}
+		})
+		
+		
+	})
+	
+	//========================================
+	// UPLOAD INPUT ONCHANGE
+	//========================================
+	document.querySelector(".uploadDiv").addEventListener("change", function(e){
+		console.log("INPUT CHANGE");
+		console.log(this);
+		var target = e.target;
+		// uploadDiv
+		console.log(target);
+		// input[name='uploadInput'
+		
+		// 성공한 경우
+		var list = target.files;
+		console.log(list);
+		var innerStr = "";
+
+		for(var i = 0; i < list.length; ++i){
+			innerStr += "<button type='button' class='list-group-item list-group-item-action'>"+ list[i].name + "</button>";
+			formData.append("files", list[i]);
+		}
+		
+		uploadList.innerHTML += innerStr;
+		e.target = uploadInput.cloneNode(true);
+		console.log(e.target);
+	})
+	
+	// END OF WINDOW ONLOADED
 	})
 
 </script>

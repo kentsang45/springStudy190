@@ -7,6 +7,8 @@
 <typeAliases>
 	<typeAlias type="com.kent.board.domain.Board" alias="Board"/>
 	<typeAlias type="com.kent.common.dto.PageDTO" alias="Page"/>
+	<typeAlias type="com.kent.common.domain.AttachFile" alias="AttachFile"/>
 </typeAliases>
+
 
 </configuration>

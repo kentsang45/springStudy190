@@ -6,6 +6,7 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 import com.kent.board.config.BoardConfig;
 
 import javax.servlet.Filter;
+import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletRegistration;
 
 public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -14,6 +15,7 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
     protected Class<?>[] getRootConfigClasses() {
         return new Class[] {
                 RootConfig.class
+                , CommonConfig.class
                 , BoardConfig.class
               };
     }
@@ -33,6 +35,10 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
             ServletRegistration.Dynamic registration) {
 
         registration.setInitParameter("throwExceptionIfNoHandlerFound", "true");
+        
+        // MultipartCOnfig
+        MultipartConfigElement mpc = new MultipartConfigElement("C:\\upload\\temp", 20971520, 41943040, 20971520);
+        registration.setMultipartConfig(mpc);
 
     }
 
